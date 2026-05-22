@@ -216,7 +216,7 @@ body::-webkit-scrollbar {
 
 .form input,
 .form textarea {
-  width: 100%;
+  width: 92%;
   padding: 12px;
 
   border: none;

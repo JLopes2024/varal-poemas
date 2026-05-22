@@ -16,18 +16,23 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className="page">
       <h1>Varal de Poemas</h1>
 
-      <button onClick={() => {
-        setTelao(true);
-        entrarFullscreen();
-      }}>
+      <button
+        onClick={() => {
+          setTelao(true);
+          entrarFullscreen();
+        }}
+      >
         Modo Telão
       </button>
 
-      <UploadForm />
+      <div className="form-area">
+        <UploadForm />
+      </div>
+
       <Varal />
-    </>
+    </div>
   );
 }

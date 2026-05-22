@@ -7,6 +7,7 @@ export default function UploadForm() {
   const [autor, setAutor] = useState("");
   const [texto, setTexto] = useState("");
   const [cor, setCor] = useState("#FDD166");
+  const [loading, setLoading] = useState(false);
 
   async function enviarPoema(e) {
     e.preventDefault();
@@ -16,17 +17,28 @@ export default function UploadForm() {
       return;
     }
 
-    await addDoc(collection(db, "posts"), {
-      titulo,
-      autor,
-      texto,
-      cor,
-      now: serverTimestamp()
-    });
+    try {
+      setLoading(true);
 
-    setTitulo("");
-    setAutor("");
-    setTexto("");
+      await addDoc(collection(db, "posts"), {
+        titulo,
+        autor,
+        texto,
+        cor,
+        createdAt: serverTimestamp(),
+      });
+
+      setTitulo("");
+      setAutor("");
+      setTexto("");
+      setCor("#FDD166");
+
+    } catch (error) {
+      console.error("Erro ao enviar poema:", error);
+      alert("Erro ao enviar. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -55,7 +67,9 @@ export default function UploadForm() {
         onChange={(e) => setCor(e.target.value)}
       />
 
-      <button>Enviar</button>
+      <button disabled={loading}>
+        {loading ? "Enviando..." : "Enviar"}
+      </button>
     </form>
   );
 }

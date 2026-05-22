@@ -196,45 +196,41 @@ body::-webkit-scrollbar {
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* =========================
-   FORM
-========================= */
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 
-  width: 280px;
+  width: 100%;
+  max-width: 320px;
   margin: 20px auto;
   padding: 15px;
 
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
 
   border-radius: 12px;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .form input,
 .form textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
 
   border: none;
   border-radius: 8px;
-
   outline: none;
 
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
 
-  font-size: 14px;
-
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .form textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: none;
 }
 
@@ -247,11 +243,16 @@ body::-webkit-scrollbar {
   color: white;
 
   cursor: pointer;
-
   transition: 0.2s;
 }
 
 .form button:hover {
   transform: scale(1.03);
   background: #000;
+}
+
+.form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

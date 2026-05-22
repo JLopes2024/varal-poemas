@@ -1,0 +1,257 @@
+/* =========================
+   FUNDO (PAPEL)
+========================= */
+body {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  background-color: #f6f1e7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 20px 20px, 40px 40px;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   VARAL (HORIZONTAL COBRINHA)
+========================= */
+.varal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  gap: 18px;
+  padding: 20px;
+
+  width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* esconder scrollbar horizontal */
+.varal::-webkit-scrollbar {
+  display: none;
+}
+
+.varal {
+  scrollbar-width: none;
+}
+
+/* =========================
+   BALANÇO (CORDA)
+========================= */
+@keyframes balanco {
+  0%   { transform: rotate(-1.2deg); }
+  50%  { transform: rotate(1.2deg); }
+  100% { transform: rotate(-1.2deg); }
+}
+
+/* =========================
+   COBRINHA (HORIZONTAL REAL)
+========================= */
+.item {
+  flex: 0 0 auto;
+  width: 160px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: balanco 4s ease-in-out infinite;
+  transform-origin: top center;
+
+  /* 🔥 IMPORTANTE: não usar translateY fixo */
+  position: relative;
+}
+
+/* 🔥 COBRINHA REAL (DESLOCAMENTO HORIZONTAL CONTROLADO) */
+.item:nth-child(2n) {
+  top: 0px;
+}
+
+.item:nth-child(3n) {
+  top: 10px;
+}
+
+.item:nth-child(5n) {
+  top: -10px;
+}
+/* =========================
+   PRENDEDOR
+========================= */
+.pregador {
+  width: 18px;
+  height: 12px;
+  background: brown;
+  margin-bottom: -6px;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  width: 160px;
+  min-height: 180px;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+
+  box-sizing: border-box;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 0.6s ease forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  transform: translateY(-5px) rotate(-1deg) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.titulo {
+  font-weight: bold;
+  font-size: 14px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.autor {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* =========================
+   PREVIEW
+========================= */
+.texto-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+/* =========================
+   LIKE
+========================= */
+.like {
+  margin-top: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: transform 0.2s ease;
+}
+
+.like:hover {
+  transform: scale(1.2);
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   FORM
+========================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 280px;
+  margin: 20px auto;
+  padding: 15px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 10px;
+
+  border: none;
+  border-radius: 8px;
+
+  outline: none;
+
+  background: rgba(255,255,255,0.9);
+
+  font-size: 14px;
+
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.form button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+
+  background: #222;
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.form button:hover {
+  transform: scale(1.03);
+  background: #000;
+}

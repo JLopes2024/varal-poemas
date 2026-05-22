@@ -9,6 +9,13 @@ export default function PoemaCard({ poema }) {
     setLikes((prev) => prev + 1);
   }
 
+  // cria variação leve de cor (efeito mais bonito)
+  const corBase = poema.cor || "#fff";
+
+  const estiloCard = {
+    background: `linear-gradient(135deg, ${corBase}, #ffffff40)`
+  };
+
   return (
     <>
       <div className="item">
@@ -16,7 +23,7 @@ export default function PoemaCard({ poema }) {
 
         <div
           className="card"
-          style={{ backgroundColor: poema.cor || "#fff" }}
+          style={estiloCard}
           onClick={() => setAberto(true)}
         >
           <div className="conteudo">
@@ -37,7 +44,9 @@ export default function PoemaCard({ poema }) {
         <div className="modal" onClick={() => setAberto(false)}>
           <div
             className="modal-content"
-            style={{ backgroundColor: poema.cor || "#fff" }}
+            style={{
+              background: `linear-gradient(135deg, ${corBase}, #ffffff)`
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <h2>{poema.titulo}</h2>

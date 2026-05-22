@@ -256,3 +256,22 @@ body::-webkit-scrollbar {
   cursor: not-allowed;
   transform: none;
 }
+
+.paleta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cor-bolinha {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.cor-bolinha:hover {
+  transform: scale(1.2);
+}

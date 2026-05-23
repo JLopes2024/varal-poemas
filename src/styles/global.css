@@ -1,50 +1,129 @@
 /* =========================
-   FUNDO (AMBIENTE)
+   RESET
 ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
 body {
-  overflow-y: scroll;
-  scrollbar-width: none;
-
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 40%),
-    radial-gradient(circle at bottom right, rgba(255,230,180,0.25), transparent 40%),
-    linear-gradient(to bottom, #f8f3ea, #efe6d6);
-
-  background-attachment: fixed;
+  overflow-x: hidden;
 
   min-height: 100vh;
 
   font-family: "Segoe UI", sans-serif;
 
-  position: relative;
-
   color: #2b2b2b;
 
-  margin: 0;
+  background:
+    radial-gradient(circle at top left,
+      rgba(255,255,255,0.7),
+      transparent 40%),
+
+    radial-gradient(circle at bottom right,
+      rgba(255,230,180,0.25),
+      transparent 40%),
+
+    linear-gradient(
+      to bottom,
+      #f8f3ea,
+      #efe6d6
+    );
+
+  background-attachment: fixed;
+
+  position: relative;
 }
 
-body::-webkit-scrollbar {
-  display: none;
+/* =========================
+   FUNDO DINÂMICO
+========================= */
+
+body::before,
+body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  opacity: 0.18;
+
+  z-index: -1;
+
+  animation: flutuar 18s ease-in-out infinite;
+}
+
+body::before {
+  top: -120px;
+  left: -120px;
+
+  background: #ffd6a5;
+}
+
+body::after {
+  bottom: -120px;
+  right: -120px;
+
+  background: #bde0fe;
+
+  animation-delay: -8s;
+}
+
+@keyframes flutuar {
+
+  0% {
+    transform:
+      translate(0px, 0px)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(40px, -30px)
+      scale(1.1);
+  }
+
+  100% {
+    transform:
+      translate(0px, 0px)
+      scale(1);
+  }
 }
 
 /* =========================
    PAGE
 ========================= */
+
 .page {
   position: relative;
   z-index: 2;
+
+  padding-bottom: 40px;
 }
 
 /* =========================
    TÍTULO
 ========================= */
+
 .page h1 {
   text-align: center;
 
-  margin-top: 20px;
-  margin-bottom: 10px;
+  padding-top: 24px;
+  margin-bottom: 12px;
 
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 800;
 
   color: #3d2c1e;
@@ -58,12 +137,13 @@ body::-webkit-scrollbar {
 /* =========================
    BOTÃO TELÃO
 ========================= */
-.page > button {
+
+.btn-telao {
   display: block;
 
-  margin: 0 auto 10px auto;
+  margin: 0 auto 24px auto;
 
-  padding: 10px 18px;
+  padding: 12px 22px;
 
   border: none;
   border-radius: 999px;
@@ -74,46 +154,39 @@ body::-webkit-scrollbar {
 
   cursor: pointer;
 
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 14px;
 
   box-shadow:
-    0 4px 10px rgba(0,0,0,0.08);
+    0 4px 12px rgba(0,0,0,0.08);
 
   transition:
     transform 0.2s ease,
     background 0.2s ease;
 }
 
-.page > button:hover {
+.btn-telao:hover {
   transform: translateY(-2px);
 
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.92);
 }
 
 /* =========================
    VARAL
 ========================= */
+
 .varal {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-
   gap: 22px;
 
-  padding:
-    40px
-    30px
-    30px
-    30px;
-
-  width: 100vw;
-
   overflow-x: auto;
-  overflow-y: hidden;
+
+  padding:
+    30px
+    24px
+    50px;
 
   scrollbar-width: none;
-
-  box-sizing: border-box;
 }
 
 .varal::-webkit-scrollbar {
@@ -121,25 +194,9 @@ body::-webkit-scrollbar {
 }
 
 /* =========================
-   BALANÇO
-========================= */
-@keyframes balanco {
-  0% {
-    transform: rotate(-1.2deg);
-  }
-
-  50% {
-    transform: rotate(1.2deg);
-  }
-
-  100% {
-    transform: rotate(-1.2deg);
-  }
-}
-
-/* =========================
    ITEM
 ========================= */
+
 .item {
   flex: 0 0 auto;
 
@@ -151,63 +208,58 @@ body::-webkit-scrollbar {
 
   position: relative;
 
-  transform-origin: top center;
-
-  animation: balanco 5s ease-in-out infinite;
+  animation:
+    balanco 5s ease-in-out infinite;
 }
 
-/* movimento orgânico */
 .item:nth-child(2n) {
-  top: 0px;
-  animation-duration: 5s;
+  top: 6px;
 }
 
 .item:nth-child(3n) {
-  top: 10px;
-  animation-duration: 6s;
+  top: -8px;
 }
 
 .item:nth-child(5n) {
-  top: -10px;
-  animation-duration: 4.5s;
+  top: 12px;
 }
 
-/* =========================
-   PREVIEW ITEM
-========================= */
-.preview-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@keyframes balanco {
 
-/* preview NÃO pode herdar animações */
-.preview-item .card {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
 }
 
 /* =========================
    PRENDEDOR
 ========================= */
+
 .pregador {
   width: 20px;
   height: 14px;
-
-  background: linear-gradient(
-    to bottom,
-    #8b5a2b,
-    #5a3415
-  );
 
   margin-bottom: -8px;
 
   border-radius: 3px;
 
+  background:
+    linear-gradient(
+      to bottom,
+      #8b5a2b,
+      #5a3415
+    );
+
   box-shadow:
-    0 2px 4px rgba(0,0,0,0.2),
-    inset 0 1px 1px rgba(255,255,255,0.2);
+    0 2px 4px rgba(0,0,0,0.2);
 
   z-index: 5;
 }
@@ -215,65 +267,35 @@ body::-webkit-scrollbar {
 /* =========================
    CARD
 ========================= */
+
 .card {
   width: 170px;
   min-height: 190px;
 
   padding: 14px;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
-  cursor: pointer;
   text-align: center;
 
   position: relative;
+
   overflow: hidden;
 
-  box-sizing: border-box;
-
-  border: 1px solid rgba(0,0,0,0.05);
+  border:
+    1px solid rgba(0,0,0,0.05);
 
   backdrop-filter: blur(2px);
 
-  background-blend-mode: multiply;
-
   box-shadow:
-    0 4px 10px rgba(0,0,0,0.08),
-    0 10px 25px rgba(0,0,0,0.12);
+    0 6px 14px rgba(0,0,0,0.10),
+    0 14px 28px rgba(0,0,0,0.10);
 
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 
-  opacity: 0;
-
-  transform: translateY(20px);
-
-  animation: aparecer 0.6s ease forwards;
-}
-
-/* textura do papel */
-.card::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background-image:
-    radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-
-  background-size: 12px 12px;
-
-  opacity: 0.35;
-
-  pointer-events: none;
-}
-
-@keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  cursor: pointer;
 }
 
 .card:hover {
@@ -283,41 +305,51 @@ body::-webkit-scrollbar {
     scale(1.03);
 
   box-shadow:
-    0 8px 20px rgba(0,0,0,0.12),
-    0 16px 35px rgba(0,0,0,0.18);
+    0 10px 22px rgba(0,0,0,0.14),
+    0 20px 40px rgba(0,0,0,0.16);
+}
+
+/* textura */
+
+.card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    radial-gradient(
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px
+    );
+
+  background-size: 12px 12px;
+
+  opacity: 0.35;
+
+  pointer-events: none;
 }
 
 /* =========================
    CONTEÚDO
 ========================= */
+
 .conteudo {
-  display: flex;
-  flex-direction: column;
-
-  gap: 8px;
-
   position: relative;
   z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .titulo {
-  font-weight: bold;
   font-size: 15px;
+  font-weight: 700;
 
   word-break: break-word;
-  overflow-wrap: break-word;
-
-  margin: 0;
 }
 
-.autor {
-  font-size: 12px;
-  opacity: 0.75;
-}
-
-/* =========================
-   TEXTO PREVIEW
-========================= */
 .texto-preview {
   display: -webkit-box;
 
@@ -327,14 +359,19 @@ body::-webkit-scrollbar {
   overflow: hidden;
 
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.5;
+}
 
-  opacity: 0.92;
+.autor {
+  font-size: 12px;
+
+  opacity: 0.75;
 }
 
 /* =========================
    LIKE
 ========================= */
+
 .like {
   margin-top: 6px;
 
@@ -345,21 +382,17 @@ body::-webkit-scrollbar {
 
   font-size: 14px;
 
-  opacity: 0.85;
-
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .like:hover {
   transform: scale(1.2);
-  opacity: 1;
 }
 
 /* =========================
    MODAL
 ========================= */
+
 .modal {
   position: fixed;
   inset: 0;
@@ -378,95 +411,82 @@ body::-webkit-scrollbar {
 }
 
 .modal-content {
-  padding: 24px;
-
-  border-radius: 16px;
-
-  max-width: 520px;
   width: 100%;
+  max-width: 520px;
 
   max-height: 80vh;
 
   overflow-y: auto;
 
+  padding: 24px;
+
+  border-radius: 18px;
+
   box-shadow:
-    0 10px 25px rgba(0,0,0,0.2),
-    0 20px 50px rgba(0,0,0,0.3);
-
-  animation: modalEntrada 0.25s ease;
-}
-
-@keyframes modalEntrada {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+    0 12px 30px rgba(0,0,0,0.2);
 }
 
 /* =========================
    FORM + PREVIEW
 ========================= */
+
 .upload-wrapper {
   display: flex;
 
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
-  gap: 24px;
+  gap: 40px;
 
   flex-wrap: wrap;
 
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 /* =========================
-   FORMULÁRIO
+   FORM
 ========================= */
+
 .form {
+  width: 100%;
+  max-width: 340px;
+
   display: flex;
   flex-direction: column;
 
   gap: 12px;
 
-  width: 100%;
-  max-width: 340px;
-
   padding: 18px;
 
-  background: rgba(255,255,255,0.72);
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,0.72);
 
   backdrop-filter: blur(10px);
 
-  border-radius: 16px;
+  border:
+    1px solid rgba(255,255,255,0.5);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,0.08),
-    0 18px 40px rgba(0,0,0,0.08);
-
-  border: 1px solid rgba(255,255,255,0.5);
+    0 10px 25px rgba(0,0,0,0.08);
 }
 
 .form input,
 .form textarea {
   width: 100%;
 
-  padding: 12px;
-
   border: none;
   outline: none;
 
+  padding: 12px;
+
   border-radius: 10px;
 
-  background: rgba(255,255,255,0.92);
+  background:
+    rgba(255,255,255,0.92);
 
   font-size: 15px;
-
-  box-sizing: border-box;
 
   box-shadow:
     inset 0 2px 4px rgba(0,0,0,0.04);
@@ -474,20 +494,14 @@ body::-webkit-scrollbar {
 
 .form textarea {
   min-height: 120px;
+
   resize: none;
-
-  line-height: 1.5;
-}
-
-.form input:focus,
-.form textarea:focus {
-  box-shadow:
-    0 0 0 2px rgba(0,0,0,0.08);
 }
 
 /* =========================
    BOTÃO FORM
 ========================= */
+
 .form button {
   padding: 12px;
 
@@ -500,7 +514,7 @@ body::-webkit-scrollbar {
 
   cursor: pointer;
 
-  font-weight: 600;
+  font-weight: 700;
 
   transition:
     transform 0.2s ease,
@@ -508,21 +522,17 @@ body::-webkit-scrollbar {
 }
 
 .form button:hover {
-  transform: scale(1.03);
-  background: #000;
-}
+  transform: scale(1.02);
 
-.form button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  background: #000;
 }
 
 /* =========================
    PALETA
 ========================= */
+
 .paleta {
   display: flex;
-
   gap: 10px;
 
   justify-content: center;
@@ -541,40 +551,36 @@ body::-webkit-scrollbar {
     transform 0.15s ease,
     box-shadow 0.15s ease;
 
-  border: 2px solid rgba(255,255,255,0.7);
-
   box-shadow:
     0 2px 5px rgba(0,0,0,0.12);
 }
 
 .cor-bolinha:hover {
   transform: scale(1.18);
-
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.18);
 }
 
 /* =========================
    PREVIEW
 ========================= */
-.preview-live {
-  display: flex;
 
-  justify-content: center;
-  align-items: center;
+.preview-live {
+  margin-top: 10px;
 }
 
 .preview-card {
-  width: 170px;
-  min-height: 190px;
+  opacity: 0.96;
 }
 
 /* =========================
    RESPONSIVO
 ========================= */
+
 @media (max-width: 768px) {
+
   .upload-wrapper {
     flex-direction: column;
+
+    align-items: center;
   }
 
   .page h1 {
@@ -582,6 +588,6 @@ body::-webkit-scrollbar {
   }
 
   .varal {
-    padding-top: 30px;
+    padding-left: 18px;
   }
 }

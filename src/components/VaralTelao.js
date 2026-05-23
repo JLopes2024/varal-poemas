@@ -5,7 +5,6 @@ export default function VaralTelao() {
     <div className="telao">
       <div className="scroll">
         <Varal />
-        <Varal />
       </div>
     </div>
   );

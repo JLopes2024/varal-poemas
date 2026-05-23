@@ -1,7 +1,10 @@
 import { useState } from "react";
+
 import Varal from "./components/Varal";
 import VaralTelao from "./components/VaralTelao";
 import UploadForm from "./components/UploadForm";
+import FundoParticulas from "./components/FundoParticulas";
+
 import "./styles/global.css";
 
 export default function App() {
@@ -12,27 +15,36 @@ export default function App() {
   }
 
   if (telao) {
-    return <VaralTelao />;
+    return (
+      <>
+        <FundoParticulas />
+        <VaralTelao />
+      </>
+    );
   }
 
   return (
-    <div className="page">
-      <h1>Varal de Poemas</h1>
+    <>
+      <FundoParticulas />
 
-      <button
-        onClick={() => {
-          setTelao(true);
-          entrarFullscreen();
-        }}
-      >
-        Modo Telão
-      </button>
+      <div className="page">
+        <h1>Varal de Poemas</h1>
 
-      <div className="form-area">
-        <UploadForm />
+        <button
+          onClick={() => {
+            setTelao(true);
+            entrarFullscreen();
+          }}
+        >
+          ✨ Modo Telão
+        </button>
+
+        <div className="form-area">
+          <UploadForm />
+        </div>
+
+        <Varal />
       </div>
-
-      <Varal />
-    </div>
+    </>
   );
 }

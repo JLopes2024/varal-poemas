@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { db } from "../services/firebase";
+
 import {
   collection,
   addDoc,
@@ -38,54 +39,86 @@ const paletaCores = [
 ];
 
 export default function UploadForm() {
-  const [titulo, setTitulo] = useState("");
-  const [autor, setAutor] = useState("");
-  const [texto, setTexto] = useState("");
-  const [cor, setCor] = useState("#FDD166");
-  const [loading, setLoading] = useState(false);
+
+  const [titulo, setTitulo] =
+    useState("");
+
+  const [autor, setAutor] =
+    useState("");
+
+  const [texto, setTexto] =
+    useState("");
+
+  const [categoria, setCategoria] =
+    useState("");
+
+  const [cor, setCor] =
+    useState("#FDD166");
+
+  const [loading, setLoading] =
+    useState(false);
 
   async function enviarPoema(e) {
+
     e.preventDefault();
 
     if (!titulo || !autor || !texto) {
+
       alert("Preencha tudo 😄");
       return;
     }
 
     try {
+
       setLoading(true);
 
-      await addDoc(collection(db, "posts"), {
-        titulo,
-        autor,
-        texto,
-        cor,
-        createdAt: serverTimestamp(),
-      });
+      await addDoc(
+        collection(db, "posts"),
+        {
+          titulo,
+          autor,
+          texto,
+          categoria,
+          cor,
+          likes: 0,
+          createdAt: serverTimestamp(),
+        }
+      );
 
       setTitulo("");
       setAutor("");
       setTexto("");
+      setCategoria("");
       setCor("#FDD166");
 
     } catch (error) {
+
       console.error(error);
-      alert("Erro ao enviar 😢");
+
+      alert(
+        "Erro ao enviar 😢"
+      );
+
     } finally {
+
       setLoading(false);
     }
   }
 
   return (
+
     <div className="upload-wrapper">
 
       <form
         onSubmit={enviarPoema}
         className="form"
       >
+
         <input
           placeholder="Título"
+
           value={titulo}
+
           onChange={(e) =>
             setTitulo(e.target.value)
           }
@@ -93,7 +126,9 @@ export default function UploadForm() {
 
         <input
           placeholder="Autor"
+
           value={autor}
+
           onChange={(e) =>
             setAutor(e.target.value)
           }
@@ -101,59 +136,123 @@ export default function UploadForm() {
 
         <textarea
           placeholder="Poema..."
+
           value={texto}
+
           onChange={(e) =>
             setTexto(e.target.value)
           }
         />
 
+        <select
+          value={categoria}
+
+          onChange={(e) =>
+            setCategoria(
+              e.target.value
+            )
+          }
+        >
+
+          <option value="">
+            Emoção do poema
+          </option>
+
+          <option value="🌤 Esperança">
+            🌤 Esperança
+          </option>
+
+          <option value="🌙 Saudade">
+            🌙 Saudade
+          </option>
+
+          <option value="🔥 Intensidade">
+            🔥 Intensidade
+          </option>
+
+          <option value="🌧 Vulnerabilidade">
+            🌧 Vulnerabilidade
+          </option>
+
+          <option value="🌱 Recomeço">
+            🌱 Recomeço
+          </option>
+
+          <option value="☁️ Reflexão">
+            ☁️ Reflexão
+          </option>
+
+        </select>
+
         <div className="paleta">
+
           {paletaCores.map((c) => (
+
             <div
               key={c}
-              onClick={() => setCor(c)}
+
+              onClick={() =>
+                setCor(c)
+              }
+
               className="cor-bolinha"
+
               style={{
                 backgroundColor: c,
+
                 border:
                   cor === c
                     ? "2px solid #000"
                     : "2px solid transparent",
               }}
             />
+
           ))}
+
         </div>
 
         <button disabled={loading}>
+
           {loading
-            ? "Pendurando..."
+            ? "Pend urando..."
             : "Pendurar poema"}
+
         </button>
+
       </form>
+
+      {/* preview ao vivo */}
 
       <motion.div
         className="preview-live"
+
         initial={{
           opacity: 0,
           y: 20
         }}
+
         animate={{
           opacity: 1,
           y: 0
         }}
       >
-        <div className="preview-item">
+
+        <div className="item">
+
           <div className="pregador"></div>
 
           <motion.div
             className="card preview-card"
+
             animate={{
               rotate: [-2, 1, -2]
             }}
+
             transition={{
               duration: 5,
               repeat: Infinity
             }}
+
             style={{
               background: `
                 linear-gradient(
@@ -165,23 +264,43 @@ export default function UploadForm() {
               `
             }}
           >
+
             <div className="conteudo">
+
+              {categoria && (
+                <div className="categoria">
+                  {categoria}
+                </div>
+              )}
+
               <h3 className="titulo">
-                {titulo || "Seu título"}
+
+                {titulo ||
+                  "Seu título"}
+
               </h3>
 
               <p className="texto-preview">
+
                 {texto ||
                   "Seu poema aparecerá aqui..."}
+
               </p>
 
               <span className="autor">
+
                 — {autor || "Autor"}
+
               </span>
+
             </div>
+
           </motion.div>
+
         </div>
+
       </motion.div>
+
     </div>
   );
 }

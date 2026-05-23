@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { db } from "../services/firebase";
@@ -11,8 +11,8 @@ export default function PoemaCard({ poema }) {
 
   const corBase = poema.cor || "#fff9dc";
 
-  // 🎋 estabilidade visual (evita jitter)
   const rotacao = useMemo(() => Math.random() * 2 - 1, []);
+  const startTimeRef = useRef(null);
 
   const estiloCard = useMemo(
     () => ({
@@ -23,6 +23,7 @@ export default function PoemaCard({ poema }) {
 
   const desbloqueado = likes >= 5;
 
+  // ❤️ LIKE
   async function curtir(e) {
     e.stopPropagation();
 
@@ -38,7 +39,38 @@ export default function PoemaCard({ poema }) {
     }
   }
 
-  // ✨ máquina de escrever (mais suave)
+  // 👁️ ABRIR POEMA (TRACKING INÍCIO)
+  function abrirPoema() {
+    setAberto(true);
+
+    startTimeRef.current = Date.now();
+
+    updateDoc(doc(db, "posts", poema.id), {
+      opens: increment(1)
+    }).catch(console.error);
+  }
+
+  // ⏱️ FECHAR POEMA (TRACKING TEMPO)
+  async function fecharPoema() {
+    setAberto(false);
+
+    if (startTimeRef.current) {
+      const duration = Date.now() - startTimeRef.current;
+
+      try {
+        await updateDoc(doc(db, "posts", poema.id), {
+          totalViewTime: increment(duration),
+          lastOpenedAt: Date.now()
+        });
+      } catch (err) {
+        console.error(err);
+      }
+
+      startTimeRef.current = null;
+    }
+  }
+
+  // ✨ máquina de escrever
   useEffect(() => {
     if (!aberto) return;
 
@@ -56,6 +88,19 @@ export default function PoemaCard({ poema }) {
     return () => clearInterval(interval);
   }, [aberto, poema.texto]);
 
+  // 👁️ presença contínua (opcional - museu vivo)
+  useEffect(() => {
+    if (!aberto) return;
+
+    const interval = setInterval(() => {
+      updateDoc(doc(db, "posts", poema.id), {
+        views: increment(1)
+      }).catch(() => {});
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [aberto, poema.id]);
+
   return (
     <>
       <motion.div
@@ -69,7 +114,7 @@ export default function PoemaCard({ poema }) {
         <motion.div
           className="card"
           style={estiloCard}
-          onClick={() => setAberto(true)}
+          onClick={abrirPoema}
           animate={{ rotate: [rotacao, rotacao + 0.5, rotacao] }}
           transition={{ duration: 8, repeat: Infinity }}
         >
@@ -103,7 +148,7 @@ export default function PoemaCard({ poema }) {
         {aberto && (
           <motion.div
             className="modal"
-            onClick={() => setAberto(false)}
+            onClick={fecharPoema}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

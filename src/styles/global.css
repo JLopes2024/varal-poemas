@@ -23,7 +23,6 @@ body::-webkit-scrollbar {
 }
 
 /* PAGE */
-
 .page {
   position: relative;
   z-index: 2;
@@ -35,33 +34,29 @@ body::-webkit-scrollbar {
   margin-top: 20px;
   margin-bottom: 10px;
 
-  font-size: 42px;
+  font-size: 46px;
   font-weight: 800;
 
   color: #3d2c1e;
 }
 
 /* BOTÃO TELÃO */
-
 .page > button {
-
   display: block;
-
   margin: 0 auto 10px auto;
 
-  padding: 10px 18px;
+  padding: 12px 20px;
 
   border: none;
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.75);
 
   cursor: pointer;
 
   font-weight: 600;
 
-  box-shadow:
-    0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 
   transition: 0.2s ease;
 }
@@ -71,36 +66,26 @@ body::-webkit-scrollbar {
 }
 
 /* VARAL */
-
 .varal {
-
   display: flex;
-
   flex-wrap: wrap;
 
-  gap: 22px;
+  gap: 28px;
 
-  padding: 30px;
+  padding: 40px;
 
   width: 100%;
-
   box-sizing: border-box;
 
-  justify-content: flex-start;
-
+  justify-content: center;
   align-items: flex-start;
 }
 
-.varal::-webkit-scrollbar {
-  display: none;
-}
-
 /* ITEM */
-
 .item {
   flex: 0 0 auto;
 
-  width: 170px;
+  width: 260px;
 
   display: flex;
   flex-direction: column;
@@ -108,30 +93,26 @@ body::-webkit-scrollbar {
 
   position: relative;
 
-  animation: balanco 5s ease-in-out infinite;
+  animation: balanco 9s ease-in-out infinite;
 }
 
+/* BALANÇO MAIS SUAVE (INSTALAÇÃO) */
 @keyframes balanco {
-
   0% {
-    transform: rotate(-1.2deg);
+    transform: rotate(-0.6deg);
   }
-
   50% {
-    transform: rotate(1.2deg);
+    transform: rotate(0.6deg);
   }
-
   100% {
-    transform: rotate(-1.2deg);
+    transform: rotate(-0.6deg);
   }
 }
 
 /* PRENDEDOR */
-
 .pregador {
-
-  width: 20px;
-  height: 14px;
+  width: 26px;
+  height: 18px;
 
   background: linear-gradient(
     to bottom,
@@ -139,23 +120,21 @@ body::-webkit-scrollbar {
     #5a3415
   );
 
-  margin-bottom: -8px;
+  margin-bottom: -10px;
 
-  border-radius: 3px;
+  border-radius: 4px;
 
   z-index: 5;
 }
 
 /* CARD */
-
 .card {
+  width: 260px;
+  min-height: 300px;
 
-  width: 170px;
-  min-height: 190px;
+  padding: 18px;
 
-  padding: 14px;
-
-  border-radius: 14px;
+  border-radius: 16px;
 
   cursor: pointer;
 
@@ -165,25 +144,24 @@ body::-webkit-scrollbar {
 
   box-sizing: border-box;
 
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.06);
 
   box-shadow:
-    0 4px 10px rgba(0,0,0,0.08),
-    0 10px 25px rgba(0,0,0,0.12);
+    0 12px 30px rgba(0,0,0,0.25),
+    0 20px 60px rgba(0,0,0,0.15);
 
   transition: 0.25s ease;
 }
 
 .card:hover {
-
   transform:
     translateY(-6px)
-    rotate(-1deg)
+    rotate(-0.8deg)
     scale(1.03);
 }
 
+/* textura leve */
 .card::after {
-
   content: "";
 
   position: absolute;
@@ -197,35 +175,32 @@ body::-webkit-scrollbar {
 
   background-size: 12px 12px;
 
-  opacity: 0.35;
+  opacity: 0.18;
 
   pointer-events: none;
 }
 
 /* CONTEÚDO */
-
 .conteudo {
-
   display: flex;
   flex-direction: column;
 
-  gap: 8px;
+  gap: 10px;
 
   position: relative;
-
   z-index: 2;
 }
 
+/* TÍTULO MAIS VISÍVEL */
 .titulo {
-
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 
   margin: 0;
 }
 
+/* TEXTO MAIS LEGÍVEL */
 .texto-preview {
-
   display: -webkit-box;
 
   -webkit-line-clamp: 5;
@@ -233,22 +208,20 @@ body::-webkit-scrollbar {
 
   overflow: hidden;
 
-  font-size: 13px;
+  font-size: 15px;
 
-  line-height: 1.45;
+  line-height: 1.6;
 }
 
+/* AUTOR */
 .autor {
+  font-size: 13px;
 
-  font-size: 12px;
-
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 /* LIKE */
-
 .like {
-
   margin-top: 6px;
 
   border: none;
@@ -256,13 +229,11 @@ body::-webkit-scrollbar {
 
   cursor: pointer;
 
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* MODAL */
-
 .modal {
-
   position: fixed;
   inset: 0;
 
@@ -278,15 +249,14 @@ body::-webkit-scrollbar {
 }
 
 .modal-content {
-
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
 
   max-height: 80vh;
 
   overflow-y: auto;
 
-  padding: 24px;
+  padding: 28px;
 
   border-radius: 18px;
 
@@ -294,38 +264,32 @@ body::-webkit-scrollbar {
     0 20px 50px rgba(0,0,0,0.3);
 }
 
+/* TEXTO MODAL */
 .texto-modal {
-
   white-space: pre-wrap;
 
-  line-height: 1.8;
+  line-height: 1.9;
 
-  font-size: 16px;
+  font-size: 17px;
 
   margin-top: 16px;
 }
 
 /* ASSINATURA */
-
 .assinatura {
-
   margin-top: 30px;
 
   text-align: right;
 
-  font-size: 28px;
+  font-size: 30px;
 
-  font-family:
-    "Brush Script MT",
-    cursive;
+  font-family: "Brush Script MT", cursive;
 
-  opacity: 0.82;
+  opacity: 0.85;
 }
 
 /* FORM */
-
 .upload-wrapper {
-
   display: flex;
 
   justify-content: center;
@@ -337,35 +301,32 @@ body::-webkit-scrollbar {
 }
 
 .form {
-
   display: flex;
   flex-direction: column;
 
   gap: 12px;
 
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
 
   padding: 18px;
 
-  background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.75);
 
   border-radius: 16px;
 
-  box-shadow:
-    0 8px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* INPUTS */
 .form input,
 .form textarea,
 .form select {
-
   width: 100%;
 
   padding: 12px;
 
   border: none;
-
   outline: none;
 
   border-radius: 10px;
@@ -378,22 +339,18 @@ body::-webkit-scrollbar {
 }
 
 .form textarea {
-
   min-height: 120px;
-
   resize: none;
 }
 
+/* BOTÃO */
 .form button {
-
   padding: 12px;
 
   border: none;
-
   border-radius: 10px;
 
   background: #222;
-
   color: white;
 
   font-weight: 600;
@@ -402,9 +359,7 @@ body::-webkit-scrollbar {
 }
 
 /* PREVIEW */
-
 .preview-live {
-
   display: flex;
   justify-content: center;
 
@@ -412,11 +367,8 @@ body::-webkit-scrollbar {
 }
 
 /* PALETA */
-
 .paleta {
-
   display: flex;
-
   flex-wrap: wrap;
 
   justify-content: center;
@@ -425,9 +377,8 @@ body::-webkit-scrollbar {
 }
 
 .cor-bolinha {
-
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 
   border-radius: 50%;
 
@@ -435,92 +386,66 @@ body::-webkit-scrollbar {
 }
 
 /* CATEGORIA */
-
 .categoria,
 .categoria-modal {
-
   display: inline-block;
 
-  padding: 5px 10px;
+  padding: 6px 12px;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.5);
 
-  font-size: 11px;
+  font-size: 12px;
 
   font-weight: 600;
 
-  opacity: 0.75;
+  opacity: 0.8;
 
   align-self: center;
 }
 
 .categoria-modal {
-
   margin-bottom: 14px;
 }
 
 /* MOBILE */
-
 @media (max-width: 768px) {
-
   .upload-wrapper {
-
     flex-direction: column;
-
     align-items: center;
   }
 
-  .modal-content {
-
-    width: 92%;
-
-    padding: 22px;
-  }
-
-  .texto-modal {
-
-    font-size: 15px;
-  }
-
-  .assinatura {
-
-    font-size: 24px;
-  }
-
   .card {
+    width: 220px;
+  }
 
-    width: 160px;
+  .item {
+    width: 220px;
+  }
+
+  .modal-content {
+    width: 92%;
   }
 }
 
-/* =========================
-   COBRINHA REAL
-========================= */
-
-/* linhas pares */
-.varal .item:nth-child(4n + 1) {
-  margin-left: 0px;
-}
-
+/* COBRINHA (SUAVIZADA PARA INSTALAÇÃO) */
 .varal .item:nth-child(4n + 2) {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .varal .item:nth-child(4n + 3) {
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
 .varal .item:nth-child(4n + 4) {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
-/* sensação orgânica */
 .varal .item:nth-child(2n) {
-  transform: rotate(-2deg);
+  transform: rotate(-1deg);
 }
 
 .varal .item:nth-child(3n) {
-  transform: rotate(2deg);
+  transform: rotate(1deg);
 }

@@ -7,7 +7,6 @@ import UploadForm from "./components/UploadForm";
 import "./styles/global.css";
 
 export default function App() {
-
   const [telao, setTelao] = useState(false);
 
   function entrarFullscreen() {
@@ -20,23 +19,20 @@ export default function App() {
 
   return (
     <div className="page">
-
       <h1>Varal de Poemas</h1>
 
       <button
-        className="btn-telao"
         onClick={() => {
           setTelao(true);
           entrarFullscreen();
         }}
       >
-        ✨ Modo Telão
+        ✨ Modo Museu
       </button>
 
       <UploadForm />
 
       <Varal />
-
     </div>
   );
 }

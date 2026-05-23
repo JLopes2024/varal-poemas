@@ -19,25 +19,22 @@ export default function Varal() {
       orderBy("createdAt", "desc")
     );
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const lista = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-
-      setPoemas(lista);
+    const unsub = onSnapshot(q, (snap) => {
+      setPoemas(
+        snap.docs.map((d) => ({
+          id: d.id,
+          ...d.data()
+        }))
+      );
     });
 
-    return () => unsubscribe();
+    return () => unsub();
   }, []);
 
   return (
     <div className="varal">
-      {poemas.map((poema) => (
-        <PoemaCard
-          key={poema.id}
-          poema={poema}
-        />
+      {poemas.map((p) => (
+        <PoemaCard key={p.id} poema={p} />
       ))}
     </div>
   );

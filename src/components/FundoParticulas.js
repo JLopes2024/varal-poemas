@@ -1,5 +1,6 @@
 import Particles from "react-tsparticles";
 
+
 export default function FundoParticulas() {
   return (
     <Particles

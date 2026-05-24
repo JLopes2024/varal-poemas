@@ -36,3 +36,127 @@
     transform: rotate(360deg);
   }
 }
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-size: 62px;
+  font-weight: 800;
+
+  letter-spacing: -2px;
+
+  color: #3d2c1e;
+
+  animation: respirarTitulo 7s ease-in-out infinite;
+}
+
+.subtitulo {
+  margin: 0;
+
+  font-size: 15px;
+
+  letter-spacing: 4px;
+
+  text-transform: lowercase;
+
+  opacity: 0.65;
+
+  color: #5b4636;
+}
+
+/* RESPIRAÇÃO */
+
+@keyframes respirarTitulo {
+
+  0% {
+    opacity: 0.92;
+    transform: translateY(0px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  100% {
+    opacity: 0.92;
+    transform: translateY(0px);
+  }
+}
+
+/* BOTÃO MUSEU */
+
+.btn-museu {
+  display: block;
+
+  margin: 0 auto 30px auto;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.75);
+
+  backdrop-filter: blur(10px);
+
+  color: #3d2c1e;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.08);
+
+  transition: all 0.25s ease;
+}
+
+.btn-museu:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .subtitulo {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .btn-museu {
+    font-size: 13px;
+  }
+}

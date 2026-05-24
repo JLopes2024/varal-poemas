@@ -19,19 +19,32 @@ export default function App() {
 
   return (
     <div className="page">
-      <h1>Varal de Poemas</h1>
+      {/* HERO */}
+      <header className="hero">
+        <div className="hero-content">
+          <h1>Entre Pessoas</h1>
 
+          <p className="subtitulo">
+            memórias e silêncios compartilhados
+          </p>
+        </div>
+      </header>
+
+      {/* BOTÃO MUSEU */}
       <button
+        className="btn-museu"
         onClick={() => {
           setTelao(true);
           entrarFullscreen();
         }}
       >
-        ✨ Modo Museu
+        ✨ Entrar no modo museu
       </button>
 
+      {/* FORM */}
       <UploadForm />
 
+      {/* VARAL */}
       <Varal />
     </div>
   );

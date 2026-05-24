@@ -449,3 +449,462 @@ body::-webkit-scrollbar {
 .varal .item:nth-child(3n) {
   transform: rotate(1deg);
 }
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.hero h1 {
+  margin: 0;
+
+  font-size: 62px;
+  font-weight: 800;
+
+  letter-spacing: -2px;
+
+  color: #3d2c1e;
+
+  animation: respirarTitulo 7s ease-in-out infinite;
+}
+
+.subtitulo {
+  margin: 0;
+
+  font-size: 15px;
+
+  letter-spacing: 4px;
+
+  text-transform: lowercase;
+
+  opacity: 0.65;
+
+  color: #5b4636;
+}
+
+/* RESPIRAÇÃO */
+
+@keyframes respirarTitulo {
+
+  0% {
+    opacity: 0.92;
+    transform: translateY(0px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  100% {
+    opacity: 0.92;
+    transform: translateY(0px);
+  }
+}
+
+/* BOTÃO MUSEU */
+
+.btn-museu {
+  display: block;
+
+  margin: 0 auto 30px auto;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.75);
+
+  backdrop-filter: blur(10px);
+
+  color: #3d2c1e;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.08);
+
+  transition: all 0.25s ease;
+}
+
+.btn-museu:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .subtitulo {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .btn-museu {
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   TELÃO / MUSEU DIGITAL
+========================= */
+
+.telao {
+  position: relative;
+
+  min-height: 100vh;
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,230,180,0.08), transparent 40%),
+    linear-gradient(
+      180deg,
+      #f6f1e8 0%,
+      #efe5d2 45%,
+      #e8dcc7 100%
+    );
+}
+
+/* atmosfera */
+
+.telao-overlay {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    );
+
+  mix-blend-mode: soft-light;
+
+  opacity: 0.7;
+
+  animation: respirarOverlay 12s ease-in-out infinite;
+}
+
+@keyframes respirarOverlay {
+
+  0% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.45;
+  }
+}
+
+/* HERO */
+
+.telao-hero {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 50;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  backdrop-filter: blur(12px);
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(248,243,234,0.82),
+      rgba(248,243,234,0.15)
+    );
+}
+
+/* conteúdo */
+
+.telao-brand {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.telao-brand h1 {
+  margin: 0;
+
+  font-size: 82px;
+  font-weight: 800;
+
+  letter-spacing: -4px;
+
+  color: #3d2c1e;
+
+  text-shadow:
+    0 4px 18px rgba(0,0,0,0.08);
+
+  animation: respirarTituloMuseu 9s ease-in-out infinite;
+}
+
+.telao-brand p {
+  margin: 0;
+
+  font-size: 14px;
+
+  letter-spacing: 6px;
+
+  text-transform: lowercase;
+
+  color: #6a5443;
+
+  opacity: 0.7;
+}
+
+/* respiração */
+
+@keyframes respirarTituloMuseu {
+
+  0% {
+    opacity: 0.9;
+    transform: translateY(0px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: translateY(0px);
+  }
+}
+
+/* scroll */
+
+.scroll {
+  position: relative;
+  z-index: 2;
+}
+
+/* info instalação */
+
+.instalacao-info {
+  position: fixed;
+
+  bottom: 18px;
+  right: 24px;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  opacity: 0.4;
+
+  color: #4d3d31;
+
+  pointer-events: none;
+}
+
+/* cards maiores no telão */
+
+.telao .card {
+  width: 300px;
+  min-height: 340px;
+}
+
+.telao .item {
+  width: 300px;
+}
+
+/* mais respiro */
+
+.telao .varal {
+  padding-top: 30px;
+  padding-bottom: 120px;
+
+  gap: 40px;
+}
+
+/* modal mais elegante */
+
+.telao .modal-content {
+  max-width: 700px;
+
+  padding: 40px;
+}
+
+/* texto mais cinematográfico */
+
+.telao .texto-modal {
+  font-size: 20px;
+
+  line-height: 2;
+}
+
+/* assinatura */
+
+.telao .assinatura {
+  font-size: 36px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .telao-brand h1 {
+    font-size: 46px;
+
+    letter-spacing: -2px;
+  }
+
+  .telao-brand p {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+  }
+
+  .telao .card {
+    width: 220px;
+    min-height: 260px;
+  }
+
+  .telao .item {
+    width: 220px;
+  }
+
+  .instalacao-info {
+    display: none;
+  }
+}
+/* =========================
+   SCROLL INFINITO
+========================= */
+
+.varal-scroll-container {
+
+  width: 100%;
+
+  height: 100vh;
+
+  overflow-y: scroll;
+
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+
+  scroll-behavior: auto;
+}
+
+.varal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* respiro no telão */
+
+.telao .varal {
+
+  padding-top: 40px;
+  padding-bottom: 200px;
+}
+
+/* sensação mais contemplativa */
+
+.telao .item {
+
+  animation-duration: 12s;
+}
+
+/* movimento mais suave */
+
+.telao .card {
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* profundidade */
+
+.telao::before {
+
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,0.08),
+      transparent 60%
+    );
+
+  mix-blend-mode: soft-light;
+
+  opacity: 0.6;
+
+  animation: respirarAmbiente 14s ease-in-out infinite;
+}
+
+@keyframes respirarAmbiente {
+
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}

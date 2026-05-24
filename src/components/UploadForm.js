@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 
 import { db } from "../services/firebase";
+
 import {
   collection,
   addDoc,
@@ -63,8 +64,6 @@ export default function UploadForm() {
 
     e.preventDefault();
 
-    // ✅ VALIDAÇÃO MELHORADA
-
     if (
       !form.titulo ||
       !form.autor ||
@@ -92,8 +91,6 @@ export default function UploadForm() {
             serverTimestamp()
         }
       );
-
-      // reset
 
       setForm({
         titulo: "",
@@ -144,8 +141,6 @@ export default function UploadForm() {
           onChange={handleChange}
         />
 
-        {/* ✅ TROCA DE POEMA */}
-
         <textarea
           name="texto"
 
@@ -165,32 +160,176 @@ export default function UploadForm() {
         >
 
           <option value="">
-            Escolha a emoção
+            Escolha o que você sente
           </option>
 
-          <option value="🌤 Esperança">
-            🌤 Esperança
-          </option>
+          {/* SOMBRIO */}
 
-          <option value="🌙 Saudade">
-            🌙 Saudade
-          </option>
+          <optgroup label="🌑 Sombrio">
 
-          <option value="🔥 Intensidade">
-            🔥 Intensidade
-          </option>
+            <option value="🌑 Medo">
+              🌑 Medo
+            </option>
 
-          <option value="🌧 Vulnerabilidade">
-            🌧 Vulnerabilidade
-          </option>
+            <option value="🌫 Confusão">
+              🌫 Confusão
+            </option>
 
-          <option value="🌱 Recomeço">
-            🌱 Recomeço
-          </option>
+            <option value="🕳 Solidão">
+              🕳 Solidão
+            </option>
 
-          <option value="☁️ Reflexão">
-            ☁️ Reflexão
-          </option>
+            <option value="🌧 Angústia">
+              🌧 Angústia
+            </option>
+
+            <option value="🫥 Vazio">
+              🫥 Vazio
+            </option>
+
+            <option value="🪫 Cansaço emocional">
+              🪫 Cansaço emocional
+            </option>
+
+            <option value="🌪 Caos mental">
+              🌪 Caos mental
+            </option>
+
+            <option value="🥀 Frustração">
+              🥀 Frustração
+            </option>
+
+            <option value="🫀 Insegurança">
+              🫀 Insegurança
+            </option>
+
+          </optgroup>
+
+          {/* ACOLHIMENTO */}
+
+          <optgroup label="🕯 Acolhimento">
+
+            <option value="🤍 Escuta">
+              🤍 Escuta
+            </option>
+
+            <option value="🫂 Abraço emocional">
+              🫂 Abraço emocional
+            </option>
+
+            <option value="☕ Conforto">
+              ☕ Conforto
+            </option>
+
+            <option value="🌤 Esperança">
+              🌤 Esperança
+            </option>
+
+            <option value="🛋 Descanso">
+              🛋 Descanso
+            </option>
+
+            <option value="🌱 Recomeço">
+              🌱 Recomeço
+            </option>
+
+            <option value="🫶 Carinho">
+              🫶 Carinho
+            </option>
+
+            <option value="🕯 Calmaria">
+              🕯 Calmaria
+            </option>
+
+            <option value="🌈 Respiro">
+              🌈 Respiro
+            </option>
+
+          </optgroup>
+
+          {/* VALIDAÇÃO */}
+
+          <optgroup label="🪞 Validação">
+
+            <option value="💬 Ser ouvido">
+              💬 Ser ouvido
+            </option>
+
+            <option value="🫱 Reconhecimento">
+              🫱 Reconhecimento
+            </option>
+
+            <option value="🧠 Clareza">
+              🧠 Clareza
+            </option>
+
+            <option value="📖 Entendimento">
+              📖 Entendimento
+            </option>
+
+            <option value="🤝 Pertencimento">
+              🤝 Pertencimento
+            </option>
+
+            <option value="🫂 Identificação">
+              🫂 Identificação
+            </option>
+
+            <option value="💡 Percepção">
+              💡 Percepção
+            </option>
+
+            <option value="🪶 Vulnerabilidade">
+              🪶 Vulnerabilidade
+            </option>
+
+            <option value="☁️ Reflexão">
+              ☁️ Reflexão
+            </option>
+
+          </optgroup>
+
+          {/* RESOLUÇÃO */}
+
+          <optgroup label="🌅 Resolução">
+
+            <option value="🔥 Coragem">
+              🔥 Coragem
+            </option>
+
+            <option value="🛤 Continuidade">
+              🛤 Continuidade
+            </option>
+
+            <option value="🌅 Superação">
+              🌅 Superação
+            </option>
+
+            <option value="🪴 Crescimento">
+              🪴 Crescimento
+            </option>
+
+            <option value="✨ Transformação">
+              ✨ Transformação
+            </option>
+
+            <option value="🕊 Liberdade">
+              🕊 Liberdade
+            </option>
+
+            <option value="🌊 Aceitação">
+              🌊 Aceitação
+            </option>
+
+            <option value="🔓 Alívio">
+              🔓 Alívio
+            </option>
+
+            <option value="🌞 Leveza">
+              🌞 Leveza
+            </option>
+
+          </optgroup>
 
         </select>
 
@@ -272,8 +411,10 @@ export default function UploadForm() {
               )}
 
               <h3>
+
                 {form.titulo ||
                   "Seu título"}
+
               </h3>
 
               <p>

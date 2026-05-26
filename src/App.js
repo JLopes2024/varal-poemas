@@ -17,7 +17,7 @@ export default function App() {
   }
 
   function lidarComAcessoAoMuseu() {
-    // Define a senha que você deseja usar na aula
+    // Sua nova senha definida
     const senhaCorreta = "261549Jeff!"; 
     
     // Abre uma caixinha de texto na tela do usuário
@@ -35,7 +35,8 @@ export default function App() {
   }
 
   if (telao) {
-    return <VaralTelao />;
+    // Alterado aqui: Passando a função que desativa o telão para dentro do componente do museu
+    return <VaralTelao fecharTelao={() => setTelao(false)} />;
   }
 
   return (
@@ -56,7 +57,7 @@ export default function App() {
         className="btn-museu"
         onClick={lidarComAcessoAoMuseu}
       >
-        ✨ Entrar no modo museu
+        ✨ Entrar no modo museum
       </button>
 
       {/* FORM */}

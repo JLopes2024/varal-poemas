@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 
-import { db } from "../services/firebase";
+import { db, auth } from "../services/firebase";
 
 import {
   collection,
@@ -28,7 +28,6 @@ export default function UploadForm() {
 
   const [form, setForm] = useState({
     titulo: "",
-    autor: "",
     texto: "",
     categoria: "",
     cor: "#FDD166"
@@ -64,9 +63,21 @@ export default function UploadForm() {
 
     e.preventDefault();
 
+    // usuário precisa estar logado
+
+    if (!auth.currentUser) {
+
+      alert(
+        "Faça login para compartilhar uma memória ✨"
+      );
+
+      return;
+    }
+
+    // validação
+
     if (
       !form.titulo ||
-      !form.autor ||
       !form.texto ||
       !form.categoria
     ) {
@@ -86,15 +97,36 @@ export default function UploadForm() {
         collection(db, "posts"),
         {
           ...form,
+
           likes: 0,
+
           createdAt:
-            serverTimestamp()
+            serverTimestamp(),
+
+          // auth
+
+          userId:
+            auth.currentUser.uid,
+
+          userEmail:
+            auth.currentUser.email,
+
+          autor:
+            auth.currentUser.displayName ||
+            "presença anônima",
+
+          // tracking
+
+          visualizacoes: 0,
+
+          tempoLeitura: 0
         }
       );
 
+      // reset
+
       setForm({
         titulo: "",
-        autor: "",
         texto: "",
         categoria: "",
         cor: "#FDD166"
@@ -125,18 +157,10 @@ export default function UploadForm() {
 
         <input
           name="titulo"
-          placeholder="Título"
+
+          placeholder="Dê um nome para esse fragmento"
 
           value={form.titulo}
-
-          onChange={handleChange}
-        />
-
-        <input
-          name="autor"
-          placeholder="Seu nome"
-
-          value={form.autor}
 
           onChange={handleChange}
         />
@@ -413,7 +437,7 @@ export default function UploadForm() {
               <h3>
 
                 {form.titulo ||
-                  "Seu título"}
+                  "Seu fragmento"}
 
               </h3>
 
@@ -427,7 +451,10 @@ export default function UploadForm() {
 
               <span>
 
-                — {form.autor || "Visitante"}
+                — {
+                  auth.currentUser?.displayName ||
+                  "presença anônima"
+                }
 
               </span>
 

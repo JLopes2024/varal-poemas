@@ -1,15 +1,49 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
+import {
+  getFirestore
+} from "firebase/firestore";
+
+import {
+  getAuth,
+  GoogleAuthProvider
+} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDcPiZUxzHC_M41dGeYKHsUQ5QeJkzpFz0",
-  authDomain: "mosaico-web-b03a8.firebaseapp.com",
-  projectId: "mosaico-web-b03a8",
-  storageBucket: "mosaico-web-b03a8.firebasestorage.app",
-  messagingSenderId: "21824695574",
-  appId: "1:21824695574:web:332cbb9df40e3e9f3e3437"
+
+  apiKey:
+    "AIzaSyDcPiZUxzHC_M41dGeYKHsUQ5QeJkzpFz0",
+
+  authDomain:
+    "mosaico-web-b03a8.firebaseapp.com",
+
+  projectId:
+    "mosaico-web-b03a8",
+
+  storageBucket:
+    "mosaico-web-b03a8.firebasestorage.app",
+
+  messagingSenderId:
+    "21824695574",
+
+  appId:
+    "1:21824695574:web:332cbb9df40e3e9f3e3437"
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-export const db = getFirestore(app);
+/* FIRESTORE */
+
+export const db =
+  getFirestore(app);
+
+/* AUTH */
+
+export const auth =
+  getAuth(app);
+
+/* GOOGLE PROVIDER */
+
+export const provider =
+  new GoogleAuthProvider();

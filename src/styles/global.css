@@ -908,3 +908,64 @@ body::-webkit-scrollbar {
     opacity: 0.4;
   }
 }
+.login-screen {
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+
+  background:
+    rgba(255,255,255,0.7);
+
+  backdrop-filter: blur(14px);
+
+  padding: 40px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.12);
+}
+
+.login-box h1 {
+
+  margin: 0;
+
+  font-size: 52px;
+
+  color: #3d2c1e;
+}
+
+.login-box p {
+
+  opacity: 0.7;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 30px;
+}
+
+.login-box button {
+
+  border: none;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: #222;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}

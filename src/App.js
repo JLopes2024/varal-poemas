@@ -55,17 +55,25 @@ export default function App() {
         .catch(console.error);
     }
   }
+function entrarModoMuseu() {
 
-  function entrarModoMuseu() {
+  const senha =
+    prompt("Digite a senha do modo museum");
 
-    setTelao(true);
+  if (senha !== "261549Jeff!") {
 
-    setTimeout(() => {
-
-      entrarFullscreen();
-
-    }, 100);
+    alert("senha incorreta");
+    return;
   }
+
+  setTelao(true);
+
+  setTimeout(() => {
+
+    entrarFullscreen();
+
+  }, 100);
+}
 
   function sairModoMuseu() {
 
